@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "rlovelessiii.h"
 
 
 #ifdef RGBLIGHT_ENABLE
@@ -17,6 +18,21 @@ extern uint8_t is_master;
 #define _RAISE 2
 #define _ADJUST 3
 
+#define LAYOUT_crkbd_base( \
+        K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, K0C, \
+        K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, \
+        K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, \
+                       K31, K32, K33, K34, K35, K36                 \
+    ) \
+    LAYOUT_wrapper( \
+        K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, K0C, \
+        K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, \
+        K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, \
+                       K31, K32, K33, K34, K35, K36                 \
+    )
+
+#define LAYOUT_crkbd_base_wrapper(...)   LAYOUT_crkbd_base(__VA_ARGS__)
+
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
@@ -31,54 +47,33 @@ enum macro_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT( \
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_DEL,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_GESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_SFTENT,\
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCMD,   LOWER,  KC_BSPC,     KC_SPC,  RAISE, KC_LCTL \
-                                      //`--------------------------'  `--------------------------'
-
-  ),
-
-  [_LOWER] = LAYOUT( \
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, _______,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______ \
-                                      //`--------------------------'  `--------------------------'
+  [_QWERTY] = LAYOUT_crkbd_base_wrapper( \
+          _____QWERTY_LEFT_1______, _____QWERTY_RIGHT_1_____,\
+          _____QWERTY_LEFT_2______, _____QWERTY_RIGHT_2_____,\
+          _____QWERTY_LEFT_3______, _____QWERTY_RIGHT_3_____,\
+          __QWERTY_LEFT_4_THUMB___, __QWERTY_RIGHT_4_THUMB__ \
     ),
 
-  [_RAISE] = LAYOUT( \
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                      KC_LEFT, KC_DOWN,  KC_UP ,KC_RIGHT, XXXXXXX, _______,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______ \
-                                      //`--------------------------'  `--------------------------'
-  ),
+  [_LOWER] = LAYOUT_wrapper( \
+          ______LOWER_LEFT_1______, _____LOWER_RIGHT_1______,\
+          ______LOWER_LEFT_2______, _____LOWER_RIGHT_2______,\
+          ______LOWER_LEFT_3______, _____LOWER_RIGHT_3______,\
+          ___LOWER_LEFT_4_THUMB___, __LOWER_RIGHT_4_THUMB___ \
+    ),
 
-  [_ADJUST] = LAYOUT( \
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        RESET,  RGBRST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_SLCK,    KC_7,    KC_8,    KC_9, KC_PSCR, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      KC_CAPS,    KC_4,    KC_5,    KC_6, XXXXXXX, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      KC_NLCK,    KC_1,    KC_2,    KC_3, XXXXXXX, XXXXXXX,\
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, KC_0 \
-                                      //`--------------------------'  `--------------------------'
-  )
+  [_RAISE] = LAYOUT_wrapper( \
+          ______RAISE_LEFT_1______, _____RAISE_RIGHT_1______,\
+          ______RAISE_LEFT_2______, _____RAISE_RIGHT_2______,\
+          ______RAISE_LEFT_3______, _____RAISE_RIGHT_3______,\
+          ___RAISE_LEFT_4_THUMB___, __RAISE_RIGHT_4_THUMB___ \
+    ),
+
+  [_ADJUST] = LAYOUT_wrapper( \
+          _____ADJUST_LEFT_1______, _____ADJUST_RIGHT_1_____,\
+          _____ADJUST_LEFT_2______, _____ADJUST_RIGHT_2_____,\
+          _____ADJUST_LEFT_3______, _____ADJUST_RIGHT_3_____,\
+          __ADJUST_LEFT_4_THUMB___, __ADJUST_RIGHT_4_THUMB__ \
+    )
 };
 
 int RGB_current_mode;
