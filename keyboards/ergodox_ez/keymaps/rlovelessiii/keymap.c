@@ -2,23 +2,11 @@
 #include "rlovelessiii.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_ergodox_pretty(),
-  [1] = LAYOUT_ergodox_pretty(
-    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-    KC_GRAVE,   KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_TRNS,        KC_TRNS,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_BSLASH,
-    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                KC_TRNS,    KC_MINUS,   KC_EQUAL,   KC_LBRACKET,KC_RBRACKET,KC_TRNS,
-    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                                        MO(5),      KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-                                                                KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,
-                                                                            KC_TRNS,        KC_TRNS,
-                                                    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS
-  ),
-  [2] = LAYOUT_ergodox_pretty(),
-  [3] = LAYOUT_ergodox_pretty(),
-  [4] = LAYOUT_ergodox_pretty(),
-  [5] = LAYOUT_ergodox_pretty()
+  [0] = LAYOUT_ergodox_pretty_wrapper(__________ERGODOX_BASE__________),
+  [1] = LAYOUT_ergodox_pretty_wrapper(__________ERGODOX_LOWER_________),
+  [2] = LAYOUT_ergodox_pretty_wrapper(__________ERGODOX_RAISE_________),
+  [3] = LAYOUT_ergodox_pretty_wrapper(__________ERGODOX_ADJUST________)
 };
-
 
 extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
@@ -28,7 +16,18 @@ void keyboard_post_init_user(void) {
 }
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    [0] = { {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255} },
+    [0] = { 
+        {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, \
+        {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, \
+        {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, \
+        {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, \
+        {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, \
+        {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, {0,0,85}, \
+        {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, {0,0,119}, \
+        {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, {0,0,153}, \
+        {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, {0,0,204}, \
+        {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}
+    },
 
 };
 
