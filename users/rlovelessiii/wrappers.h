@@ -19,7 +19,7 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 /* ________BASE_LAYER________ */
 
 // Left Pinky Cluster
-#define BASE_LP0                        XXXXXXX                                                                 /* Left Base Pinky Key 0 */
+#define BASE_LP0                        KC_LALT                                                                 /* Left Base Pinky Key 0 */
 #define BASE_LP1                        KC_LEFT                                                                 /* Left Base Pinky Key 1 */
 #define BASE_LP2                        KC_DOWN                                                                 /* Left Base Pinky Key 2 */
 
@@ -32,7 +32,7 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 // Left-Hand
 #define ________BASE_L_0________        KC_GESC,    KC_1,       KC_2,       KC_3,       KC_4,       KC_5        /* Left Base Row 0 */
 #define ________BASE_L_1________        KC_TAB,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T        /* Left Base Row 1 */
-#define ________BASE_L_2________        KC_GESC,    KC_A,       KC_S,       KC_D,       KC_F,       KC_G        /* Left Base Row 2 */
+#define ________BASE_L_2________    LCTL_T(KC_ESC), KC_A,       KC_S,       KC_D,       KC_F,       KC_G        /* Left Base Row 2 */
 #define ________BASE_L_3________        KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B        /* Left Base Row 3 */
 #define ________BASE_L_4________        BASE_LP0,   BASE_LP1,   BASE_LP2,   BASE_LT0,   BASE_LT1,   BASE_LT2    /* Left Base Row 4 */
 
